@@ -1,11 +1,11 @@
-from beancount.tools.alipay.constants import SkipPartner
 from beancount.tools.alipay.record import BeanRecord, BeanRecordTransaction, StandardExcelRecord
 from beancount.tools.common.constants.account_constant import SKIP_ACCOUNT
 from beancount.tools.common.constants.common_constant import FinalRetCode, ParseRetCode, PN
 from beancount.tools.common.parser import Parser
+from beancount.tools.wechat.constants import SkipPartner
 
 
-class AliPayParser(Parser):
+class WeChatParser(Parser):
 
     def parse_to_excel_record(self, record):
         """
@@ -16,20 +16,11 @@ class AliPayParser(Parser):
         retcode, result = self._parse_transfer(record)
         if retcode in FinalRetCode:
             return retcode, result
-        # 解析 余额宝
-        retcode, result = self._parse_yuebao(record)
-        if retcode in FinalRetCode:
-            return retcode, result
         # todo chay.cao 解析其他类型
 
         # 解析失败转成未标记分类的excel格式
         result = self.parse_to_excel_record_without_classify(record)
         return retcode.FAIL, result
-
-    def _parse_yuebao(self, record):
-        if self._is_yuebao_income(record):
-            return self._parse_yuebao_income(record)
-        return ParseRetCode.FAIL, None
 
     def _parse_transfer(self, record):
         # 给黄梅的转账可以直接跳过，不计入（需要注意会不会有账户名同名情况的转账，目前没有）
@@ -38,13 +29,3 @@ class AliPayParser(Parser):
         # todo 其他转账如何处理
         return ParseRetCode.FAIL, None
 
-    def _parse_yuebao_income(self, record):
-        result = self.parse_to_excel_record_with_classify(
-            record,
-            out_account='Income:Financial:YuEbao',
-            in_account='Assets:Home:Balance',
-        )
-        return ParseRetCode.SUCCESS, result
-
-    def _is_yuebao_income(self, record):
-        return record.product_name.startswith('余额宝') and record.product_name.endswith('收益发放')

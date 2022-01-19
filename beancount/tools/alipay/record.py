@@ -118,7 +118,7 @@ class AlipayRecord:
 def trans_ctime(ctime):
     try:
         date = datetime.strptime(ctime, '%Y/%m/%d %H:%M')
-    except Exception:
-        print(ctime)
-        return None
+    except Exception as e:
+        print('trans_time error, %s' % ctime)
+        raise e
     return date.strftime('%Y-%m-%d')
