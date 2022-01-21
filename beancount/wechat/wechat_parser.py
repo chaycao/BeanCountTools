@@ -1,8 +1,6 @@
-from beancount.tools.alipay.record import BeanRecord, BeanRecordTransaction, StandardExcelRecord
-from beancount.tools.common.constants.account_constant import SKIP_ACCOUNT
-from beancount.tools.common.constants.common_constant import FinalRetCode, ParseRetCode, PN
-from beancount.tools.common.parser import Parser
-from beancount.tools.wechat.constants import SkipPartner
+from beancount.common.constants.common_constant import FinalRetCode, ParseRetCode
+from beancount.common.parser import Parser
+from beancount.wechat.constants import SkipPartner
 
 
 class WeChatParser(Parser):

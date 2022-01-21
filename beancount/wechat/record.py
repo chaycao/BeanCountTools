@@ -10,7 +10,7 @@ class WeChatRecord:
         self.partner = line[2].strip()  # 交易对方
         self.product_name = line[3].strip()  # 商品名称
         self.pay_type = line[4].strip()  # 收/支
-        self.fee = line[5].strip()  # 金额(元)
+        self.fee = line[5].strip('¥')  # 金额(元)
         self.pay_method = line[6].strip()  # 支付方式
         self.status = line[7].strip()  # 当前状态
         self.transaction_no = line[8].strip()  # 交易单号

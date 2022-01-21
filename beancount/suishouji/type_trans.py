@@ -1,7 +1,7 @@
 import csv
 
 # read file
-from beancount.tools.suishouji.suishouji_constant import expenses_type_map, income_type_map, assets_map
+from beancount.suishouji.suishouji_constant import expenses_type_map, income_type_map, assets_map
 
 file_name = 'doc/suishouji-20211207.csv'
 csv_reader = csv.reader(open(file_name))

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from beancount.tools.common.constants.common_constant import PN, Currency
+from beancount.common.constants.common_constant import PN, Currency
 
 
 class ParameterBaseObj(object):
@@ -117,7 +117,7 @@ class AlipayRecord:
 
 def trans_ctime(ctime):
     try:
-        date = datetime.strptime(ctime, '%Y/%m/%d %H:%M')
+        date = datetime.strptime(ctime, '%Y-%m-%d %H:%M:%S')
     except Exception as e:
         print('trans_time error, %s' % ctime)
         raise e

@@ -1,6 +1,6 @@
 import csv
 
-from beancount.tools.suishouji.suishouji_constant import expenses_type_map, assets_map, income_type_map
+from beancount.suishouji.suishouji_constant import expenses_type_map, assets_map, income_type_map
 
 
 def trans_expenses(record):

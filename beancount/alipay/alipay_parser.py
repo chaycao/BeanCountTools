@@ -1,8 +1,7 @@
-from beancount.tools.alipay.constants import SkipPartner
-from beancount.tools.alipay.record import BeanRecord, BeanRecordTransaction, StandardExcelRecord
-from beancount.tools.common.constants.account_constant import SKIP_ACCOUNT
-from beancount.tools.common.constants.common_constant import FinalRetCode, ParseRetCode, PN
-from beancount.tools.common.parser import Parser
+from beancount.alipay.constants import SkipPartner
+from beancount.common.constants.account_constant import SKIP_ACCOUNT
+from beancount.common.constants.common_constant import FinalRetCode, ParseRetCode, PN
+from beancount.common.parser import Parser
 
 
 class AliPayParser(Parser):
@@ -41,8 +40,8 @@ class AliPayParser(Parser):
     def _parse_yuebao_income(self, record):
         result = self.parse_to_excel_record_with_classify(
             record,
-            out_account='Income:Financial:YuEbao',
-            in_account='Assets:Home:Balance',
+            out_account='Income:Financial:YuEbao; 金融-余额宝',
+            in_account='Assets:Home:Balance; 结余',
         )
         return ParseRetCode.SUCCESS, result
 

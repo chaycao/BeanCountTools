@@ -1,5 +1,5 @@
-from beancount.tools.alipay.record import BeanRecordTransaction, BeanRecord
-from beancount.tools.common.constants.common_constant import PN
+from beancount.alipay.record import BeanRecordTransaction, BeanRecord
+from beancount.common.constants.common_constant import PN
 
 
 def standard_excel_record_to_bean_record(standard_excel_record):

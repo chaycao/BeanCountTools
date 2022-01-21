@@ -1,6 +1,6 @@
 import xlsxwriter as xlsxwriter
 
-from beancount.tools.common.constants.account_constant import ALL_ACCOUNT
+from beancount.common.constants.account_constant import ALL_ACCOUNT
 
 
 def write_standard_excel_record(filename, success_records, fail_records, skip_records):

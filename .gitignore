@@ -138,10 +138,11 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-/beancount/tools/alipay/doc/
-/beancount/tools/suishouji/doc/
+/beancount/alipay/doc/
+/beancount/suishouji/doc/
 /bin/
 /include/
 /beancount_chaycao/
 /note/
-/beancount/tools/wechat/doc/
+/beancount/wechat/doc/
+/tmp/

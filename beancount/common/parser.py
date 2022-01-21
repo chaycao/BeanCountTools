@@ -1,6 +1,6 @@
-from beancount.tools.alipay.record import BeanRecordTransaction, BeanRecord, StandardExcelRecord
-from beancount.tools.common.constants.account_constant import SKIP_ACCOUNT
-from beancount.tools.common.constants.common_constant import PN
+from beancount.alipay.record import BeanRecordTransaction, BeanRecord, StandardExcelRecord
+from beancount.common.constants.account_constant import SKIP_ACCOUNT
+from beancount.common.constants.common_constant import PN
 
 
 class Parser(object):
@@ -66,6 +66,10 @@ class Parser(object):
             # 如果为SKIP，需要跳过该记录
             if out_account == SKIP_ACCOUNT or in_account == SKIP_ACCOUNT:
                 continue
+
+            # 去除注释
+            out_account = out_account.split(';')[0]
+            in_account = in_account.split(';')[0]
 
             date = row[3].value
             fee = row[4].value
