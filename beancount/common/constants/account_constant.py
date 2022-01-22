@@ -57,6 +57,7 @@ ACCOUNT_EXPENSES = [
     'Expenses:Shopping:Kitchen; 购物消费-厨房用品',
     'Expenses:Shopping:Office; 购物消费-办公用品',
     'Expenses:Shopping:Sport; 购物消费-运动器械',
+    'Expenses:Shopping:FreightInsurance; 购物消费-运费险',
 
     'Expenses:Study; 学习进修',
 
