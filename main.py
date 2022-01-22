@@ -8,16 +8,16 @@ if __name__ == "__main__":
     """
     python model func in_filename
     
-    python main.py alipay excel tmp/alipay/chaycao_alipay_record_202109.csv
+    python main.py alipay excel tmp/alipay/chaycao_alipay_record_202109_test.csv
     python main.py alipay bean tmp/alipay/chaycao_alipay_record_202109_standard.xlsx
     
-    python main.py wechat excel tmp/wechat/chaycao_202109.csv
+    python main.py wechat excel tmp/wechat/chaycao_202109_test.csv
     python main.py wechat bean tmp/wechat/chaycao_202109_standard.xlsx
     
-    python main.py alipay excel tmp/alipay/huang_alipay_record_202109.csv
+    python main.py alipay excel tmp/alipay/huang_alipay_record_202109_test.csv
     python main.py alipay bean tmp/alipay/huang_alipay_record_202109_standard.xlsx
     
-    python main.py wechat excel tmp/wechat/huang_202109.csv
+    python main.py wechat excel tmp/wechat/huang_202109_test.csv
     python main.py wechat bean tmp/wechat/huang_202109_standard.xlsx
     
     """
