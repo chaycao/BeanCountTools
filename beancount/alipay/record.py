@@ -82,7 +82,6 @@ class StandardExcelRecord:
     def __init__(self, **kwargs):
         self.out_account = kwargs.get('out_account')
         self.in_account = kwargs.get('in_account')
-        self.transaction_no = kwargs.get('transaction_no')
         self.date = kwargs['date']
         self.fee = kwargs['fee']
         self.status = kwargs.get('status')
@@ -91,6 +90,7 @@ class StandardExcelRecord:
         self.partner = kwargs.get('partner')
         self.product_name = kwargs.get('product_name')
         self.remark = kwargs.get('remark')
+        self.transaction_no = kwargs.get('transaction_no')
 
 
 class AlipayRecord:

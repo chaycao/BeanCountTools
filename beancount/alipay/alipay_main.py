@@ -31,7 +31,7 @@ def parse_to_excel(in_filename):
             success_records.append(record)
         elif retcode == ParseRetCode.FAIL:
             fail_records.append(record)
-        elif record == ParseRetCode.SKIP:
+        elif retcode == ParseRetCode.SKIP:
             skip_records.append(record)
 
     # reverse records

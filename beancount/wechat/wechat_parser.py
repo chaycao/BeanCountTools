@@ -17,7 +17,7 @@ class WeChatParser(Parser):
         # todo chay.cao 解析其他类型
 
         # 解析失败转成未标记分类的excel格式
-        result = self.parse_to_excel_record_without_classify(record)
+        result = self.parse_to_fail_excel_record(record)
         return retcode.FAIL, result
 
     def _parse_transfer(self, record):

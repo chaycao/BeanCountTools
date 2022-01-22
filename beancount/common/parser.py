@@ -7,7 +7,13 @@ class Parser(object):
     def parse_to_excel_record(self, record):
         raise NotImplementedError
 
-    def parse_to_excel_record_with_classify(self, record, out_account, in_account):
+    def parse_to_fail_excel_record(self, record):
+        return self.parse_to_excel_record_with_classify(record, out_account='Assets:Home:FamilyShared; 家庭公用')
+
+    def parse_to_skip_excel_record(self, record):
+        return self.parse_to_excel_record_with_classify(record)
+
+    def parse_to_excel_record_with_classify(self, record, out_account='', in_account=''):
         kwargs = {
             'out_account': out_account,
             'in_account': in_account,
