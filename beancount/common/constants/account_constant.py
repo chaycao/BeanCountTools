@@ -7,29 +7,41 @@ ACCOUNT_EXPENSES = [
     'Expenses:Baby:MotherSupplies; 宝宝费用-妈妈用品',
     'Expenses:Baby:Other; 宝宝费用-宝宝其他',
     'Expenses:Baby:Toy; 宝宝费用-宝宝玩具',
+
     'Expenses:Education:SchoolFee; 教育-学费',
-    'Expenses:Entertainment; 休闲娱乐-K歌',
+
+    'Expenses:Entertainment:KTV; 休闲娱乐-K歌',
+    'Expenses:Entertainment:Game; 休闲娱乐-游戏',
+    'Expenses:Entertainment:Other; 休闲娱乐-其他',
+
     'Expenses:Financial:Insurance; 金融保险-人身保险',
+
     'Expenses:Home:CommunityManagementFee; 居家物业-物业管理',
-    'Expenses:Home:Food; 居家生活-食物',
-    'Expenses:Home:Fruit; 居家生活-水果',
-    'Expenses:Home:Milk; 居家生活-牛奶',
+    'Expenses:Home:Food; 居家生活-伙食费',
     'Expenses:Home:NetFee; 居家生活-网费',
     'Expenses:Home:PhoneFee; 居家生活-话费',
     'Expenses:Home:Rent; 居家生活-房租',
     'Expenses:Home:Repair; 居家生活-维修',
-    'Expenses:Home:Snack; 居家生活-零食',
     'Expenses:Home:WaterElectGas; 居家生活-水电煤气',
-    'Expenses:Home:Wine; 居家生活-酒',
+
+    'Expenses:Food:Fruit; 饮食-水果',
+    'Expenses:Food:Milk; 饮食-牛奶',
+    'Expenses:Food:Snack; 饮食-零食',
+    'Expenses:Food:Wine; 饮食-烟酒茶',
+    'Expenses:Food:Meal; 饮食-吃饭(早中晚餐)',
+
     'Expenses:Medical:Drug; 居家生活-药',
     'Expenses:Medical:Hospital; 居家生活-医疗',
+
     'Expenses:Other:AccidentallyLost; 其他-意外丢失',
     'Expenses:Other:BadDebtLost; 其他-烂账损失',
     'Expenses:Other:Other; 其他-其他',
     'Expenses:Other:PartyMembershipDues; 其他-党费',
+
     'Expenses:Relationship:Donate; 人情往来-慈善捐助',
     'Expenses:Relationship:GiftAndTreat; 人情往来-送礼请客',
     'Expenses:Relationship:Parent; 人情往来-孝敬家长',
+
     'Expenses:Shopping:Bag; 衣服饰品-鞋帽包包',
     'Expenses:Shopping:Bathroom; 购物消费-洗护用品',
     'Expenses:Shopping:Book; 购物消费-书报杂志',
@@ -45,7 +57,9 @@ ACCOUNT_EXPENSES = [
     'Expenses:Shopping:Kitchen; 购物消费-厨房用品',
     'Expenses:Shopping:Office; 购物消费-办公用品',
     'Expenses:Shopping:Sport; 购物消费-运动器械',
+
     'Expenses:Study; 学习进修',
+
     'Expenses:Traffic:Airplane; 行车交通-飞机',
     'Expenses:Traffic:Bus; 行车交通-公交',
     'Expenses:Traffic:Park; 行车交通-停车',
@@ -53,6 +67,8 @@ ACCOUNT_EXPENSES = [
     'Expenses:Traffic:Repair; 行车交通-维修',
     'Expenses:Traffic:Taxi; 行车交通-打车',
     'Expenses:Traffic:Train; 行车交通-火车',
+    'Expenses:Traffic:Coach; 行车交通-大巴(黑车)',
+
     'Expenses:Travel:Food; 出差旅游-餐饮费',
     'Expenses:Travel:Hotel; 出差旅游-住宿费',
     'Expenses:Travel:Transport; 出差旅游-交通费',
