@@ -25,15 +25,9 @@ class WeChatParser(Parser):
         # 买菜
         elif self.is_food_grocery(record):
             retcode, result = self.parse_food_grocery(record)
-        # 达实食堂
-        elif self.is_dashi(record):
-            retcode, result = self.parse_dashi(record)
         # 居家生活-药
         elif self.is_medical_drug(record):
             retcode, result = self.parse_medical_drug(record)
-        # 美团
-        elif self.is_meituan(record):
-            retcode, result = self.parse_meituan(record)
         # 快递
         elif self.is_shopping_express(record):
             retcode, result = self.parse_shopping_express(record)
@@ -43,6 +37,10 @@ class WeChatParser(Parser):
         # 公交
         elif self.is_bus(record):
             retcode, result = self.parse_bus(record)
+        # 美团
+        elif self.is_meituan(record):
+            retcode, result = self.parse_meituan(record)
+
 
         # 解析失败转成未标记分类的excel格式
         if retcode == ParseRetCode.SKIP:
@@ -83,7 +81,7 @@ class WeChatParser(Parser):
         return r.partner == '美团平台商户'
 
     def parse_meituan(self, r):
-        # meituan 默认为吃饭
+        # meituan 默认为吃饭，返回FAIL表示需要手动确认分类
         result = self.parse_to_excel_record_with_classify(
             r,
             out_account='Assets:Home:FamilyShared; 家庭公用',

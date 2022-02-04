@@ -41,6 +41,8 @@ SkipPartner = [
 
 # 早中晚餐 Partner
 FoodMealPartner = [
+    '达实智能大厦6F餐厅',
+    '达实大厦餐厅',
     '重庆小面',
     '黔派贵州米粉小吃',
     '楚先笙（大仟里店）',
