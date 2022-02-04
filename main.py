@@ -36,17 +36,3 @@ if __name__ == "__main__":
     if cmd == 'bean':
         main.parse_to_bean(in_filename)
 
-    # if model == 'alipay':
-    #     if cmd == 'excel':
-    #         in_filename = sys.argv[2]
-    #         alipay_main.parse_to_excel(in_filename)
-    #     if cmd == 'bean':
-    #         in_filename = sys.argv[2]
-    #         alipay_main.parse_to_bean(in_filename)
-    # elif model == 'wechat':
-    #     if cmd == 'excel':
-    #         in_filename = sys.argv[2]
-    #         wechat_main.parse_to_excel(in_filename)
-    #     if cmd == 'bean':
-    #         in_filename = sys.argv[2]
-    #         wechat_main.parse_to_bean(in_filename)
