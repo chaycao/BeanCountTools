@@ -2,8 +2,8 @@ from beancount.alipay.record import BeanRecordTransaction, BeanRecord, StandardE
 from beancount.common.constants.account_constant import SKIP_ACCOUNT
 from beancount.common.constants.common_constant import PN, FoodMealPartner, ParseRetCode, FoodGroceryPartner, \
     TrafficBusPartner, TrafficTaxiPartner, ShoppingExpressPartner, MedicalDrug, SkipStatus, SkipPartner, \
-    SkipProductName, ShoppingElectronicPartner, FoodSnackPartner, TrafficCoachPartner, HomeNetFeePartner, \
-    FoodFruitPartner
+    SkipProductName, ShoppingElectronicPartner, FoodSnackPartner, TrafficCoachPartner, FoodFruitPartner, \
+    RelationshipDonatePartner
 
 
 class Parser(object):
@@ -70,6 +70,9 @@ class Parser(object):
         # 水果
         elif self.is_food_fruit(record):
             retcode, result = self.parse_food_fruit(record)
+        # 慈善捐助
+        elif self.is_relationship_donate(record):
+            retcode, result = self.parse_relationship_donate(record)
         else:
             retcode, result = self.special_parse(record)
 
@@ -184,7 +187,10 @@ class Parser(object):
         return r.product_name in SkipProductName
 
     def is_food_meal(self, r):
-        return r.partner in FoodMealPartner
+        for p in FoodMealPartner:
+            if p in r.partner:
+                return True
+        return False
 
     def parse_food_meal(self, r):
         result = self.parse_to_excel_record_with_classify(
@@ -206,7 +212,10 @@ class Parser(object):
         return ParseRetCode.SUCCESS, result
 
     def is_traffic_bus(self, r):
-        return r.partner in TrafficBusPartner
+        for p in TrafficBusPartner:
+            if p in r.partner:
+                return True
+        return False
 
     def parse_traffic_bus(self, r):
         result = self.parse_to_excel_record_with_classify(
@@ -243,7 +252,10 @@ class Parser(object):
         return ParseRetCode.SUCCESS, result
 
     def is_medical_drug(self, r):
-        return r.partner in MedicalDrug
+        for p in MedicalDrug:
+            if p in r.partner:
+                return True
+        return False
 
     def parse_medical_drug(self, r):
         result = self.parse_to_excel_record_with_classify(
@@ -348,7 +360,7 @@ class Parser(object):
         return ParseRetCode.SUCCESS, result
 
     def is_home_net_fee(self, r):
-        if r.partner in HomeNetFeePartner:
+        if r.product_name == '中国电信广东分公司充值':
             return True
         return False
 
@@ -370,5 +382,18 @@ class Parser(object):
             r,
             out_account='Assets:Home:FamilyShared; 家庭公用',
             in_account='Expenses:Food:Fruit; 饮食-水果',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_relationship_donate(self, r):
+        if r.partner in RelationshipDonatePartner:
+            return True
+        return False
+
+    def parse_relationship_donate(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Relationship:Donate; 人情往来-慈善捐助',
         )
         return ParseRetCode.SUCCESS, result

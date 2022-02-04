@@ -47,6 +47,7 @@ SkipStatus = [
     '还款成功',
     '交易关闭',
     '退款成功',
+    '充值完成',
 ]
 
 # 可跳过的产品
@@ -62,13 +63,16 @@ FoodMealPartner = [
     '达实智能大厦6F餐厅',
     '达实大厦餐厅',
     '重庆小面',
-    '黔派贵州米粉小吃',
-    '楚先笙（大仟里店）',
+    '贵州米粉',
+    '楚先笙',
     '志远光大',
-    '桐坑牛肉粿条汤',
-    '三津汤包深圳深大店',
-    '深圳市八合里海记餐饮文化有限公司',
+    '粿条',
+    '汤包',
+    '八合里',
     '探鱼',
+    '俏九州',
+    '兰州拉面',
+    '香满屋饺子馆',
 ]
 
 # 零食 Partner
@@ -84,6 +88,9 @@ FoodSnackPartner = [
     '拍立拿售货机',
     '丰e足食',
     '砵仔糕',
+    '便利蜂',
+    'luckin coffee',
+
 ]
 
 # 买菜 Partner
@@ -121,11 +128,13 @@ ShoppingExpressPartner = [
 # 公交 Partner
 TrafficBusPartner = [
     '深圳通',
+    '广州地铁',
 ]
 
 # 药 Partner
 MedicalDrug = [
     '叮当快药',
+    '康之源医药',
 ]
 
 # 电子数码 Partner
@@ -138,11 +147,6 @@ ShoppingElectronicPartner = [
 TrafficCoachPartner = [
     '贵州陆空联运汽车运输有限公司',
     '织金汽车客运总站',
-]
-
-# 网费
-HomeNetFeePartner = [
-    '中国电信广东分公司充值'
 ]
 
 # 水果

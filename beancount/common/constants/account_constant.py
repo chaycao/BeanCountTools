@@ -77,6 +77,8 @@ ACCOUNT_EXPENSES = [
     'Expenses:Travel:Hotel; 出差旅游-住宿费',
     'Expenses:Travel:Transport; 出差旅游-交通费',
     'Expenses:Travel:Shopping; 出差旅游-购物费',
+    'Expenses:Travel:Ticket; 出差旅游-门票费',
+    'Expenses:Travel:Play; 出差旅游-游乐费',
 ]
 
 ACCOUNT_INCOME = [
@@ -95,7 +97,6 @@ ACCOUNT_INCOME = [
 ]
 
 ACCOUNT_ASSETS = [
-    'Assets:FamilySharedBalance; 家庭公用结余',
     'Assets:Finance:Bound; 债券',
     'Assets:Finance:Fund; 基金账户',
     'Assets:Home:Balance; 结余',

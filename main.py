@@ -11,8 +11,8 @@ if __name__ == "__main__":
     python main.py alipay excel tmp/alipay/chaycao_alipay_record_202110.csv
     python main.py alipay bean tmp/alipay/chaycao_alipay_record_202112_standard.xlsx
     
-    python main.py wechat excel tmp/wechat/chaycao_202112.csv
-    python main.py wechat bean tmp/wechat/chaycao_202112_standard.xlsx
+    python main.py wechat excel tmp/wechat/chaycao_202201.csv
+    python main.py wechat bean tmp/wechat/chaycao_202201_standard.xlsx
     
     python main.py alipay excel tmp/alipay/huang_alipay_record_202112.csv
     python main.py alipay bean tmp/alipay/huang_alipay_record_202112_standard.xlsx
