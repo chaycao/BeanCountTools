@@ -1,11 +1,87 @@
 from beancount.alipay.record import BeanRecordTransaction, BeanRecord, StandardExcelRecord
 from beancount.common.constants.account_constant import SKIP_ACCOUNT
-from beancount.common.constants.common_constant import PN
+from beancount.common.constants.common_constant import PN, FoodMealPartner, ParseRetCode, FoodGroceryPartner, \
+    TrafficBusPartner, TrafficTaxiPartner, ShoppingExpressPartner, MedicalDrug, SkipStatus, SkipPartner, \
+    SkipProductName, ShoppingElectronicPartner, FoodSnackPartner, TrafficCoachPartner, HomeNetFeePartner, \
+    FoodFruitPartner
 
 
 class Parser(object):
     def parse_to_excel_record(self, record):
-        raise NotImplementedError
+        """
+        :param record: wechat格式record
+        :return: 标准格式record
+        """
+        retcode = ParseRetCode.FAIL
+        result = None
+
+        # 跳过
+        if self.is_skip_partner(record):
+            retcode = ParseRetCode.SKIP
+        elif self.is_skip_status(record):
+            retcode = ParseRetCode.SKIP
+        elif self.is_skip_product_name(record):
+            retcode = ParseRetCode.SKIP
+        # 早中晚餐
+        elif self.is_food_meal(record):
+            retcode, result = self.parse_food_meal(record)
+        # 买菜
+        elif self.is_food_grocery(record):
+            retcode, result = self.parse_food_grocery(record)
+        # 居家生活-药
+        elif self.is_medical_drug(record):
+            retcode, result = self.parse_medical_drug(record)
+        # 快递
+        elif self.is_shopping_express(record):
+            retcode, result = self.parse_shopping_express(record)
+        # 打车
+        elif self.is_traffic_taxi(record):
+            retcode, result = self.parse_traffic_taxi(record)
+        # 公交
+        elif self.is_traffic_bus(record):
+            retcode, result = self.parse_traffic_bus(record)
+        # 电子数码
+        elif self.is_shopping_electronic(record):
+            retcode, result = self.parse_shopping_electronic(record)
+        # 水电煤气
+        elif self.is_water_elect_gas(record):
+            retcode, result = self.parse_water_elect_gas(record)
+        # 火车票
+        elif self.is_traffic_train(record):
+            retcode, result = self.parse_traffic_train(record)
+        # 飞机票
+        elif self.is_traffic_plane(record):
+            retcode, result = self.parse_traffic_plane(record)
+        # 运费险
+        elif self.is_shopping_freight_insurance(record):
+            retcode, result = self.parse_shopping_freight_insurance(record)
+        # 话费
+        elif self.is_home_phone_fee(record):
+            retcode, result = self.parse_home_phone_fee(record)
+        # 零食
+        elif self.is_food_snack(record):
+            retcode, result = self.parse_food_snack(record)
+        # 大巴黑车
+        elif self.is_traffic_coach(record):
+            retcode, result = self.parse_traffic_coach(record)
+        # 网费
+        elif self.is_home_net_fee(record):
+            retcode, result = self.parse_home_net_fee(record)
+        # 水果
+        elif self.is_food_fruit(record):
+            retcode, result = self.parse_food_fruit(record)
+        else:
+            retcode, result = self.special_parse(record)
+
+        # 解析失败转成未标记分类的excel格式
+        if retcode == ParseRetCode.SKIP:
+            result = self.parse_to_skip_excel_record(record)
+        elif retcode == ParseRetCode.FAIL and not result:
+            result = self.parse_to_fail_excel_record(record)
+        return retcode, result
+
+    def special_parse(self, record):
+        return ParseRetCode.FAIL, None
 
     def parse_to_fail_excel_record(self, record):
         return self.parse_to_excel_record_with_classify(record, out_account='Assets:Home:FamilyShared; 家庭公用')
@@ -97,3 +173,202 @@ class Parser(object):
             bean_records.append(bean_record)
 
         return bean_records
+
+    def is_skip_partner(self, record):
+        return record.partner in SkipPartner
+
+    def is_skip_status(self, r):
+        return r.status in SkipStatus
+
+    def is_skip_product_name(self, r):
+        return r.product_name in SkipProductName
+
+    def is_food_meal(self, r):
+        return r.partner in FoodMealPartner
+
+    def parse_food_meal(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Food:Meal; 饮食-吃饭(早中晚餐)',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_food_grocery(self, r):
+        return r.partner in FoodGroceryPartner
+
+    def parse_food_grocery(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Food:Grocery; 饮食-买菜',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_traffic_bus(self, r):
+        return r.partner in TrafficBusPartner
+
+    def parse_traffic_bus(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Traffic:Bus; 行车交通-公交',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_traffic_taxi(self, r):
+        return r.partner in TrafficTaxiPartner
+
+    def parse_traffic_taxi(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Traffic:Taxi; 行车交通-打车',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_shopping_express(self, r):
+        if r.partner in ShoppingExpressPartner:
+            return True
+        elif r.product_name.startswith('菜鸟裹裹-寄件费'):
+            return True
+        return False
+
+    def parse_shopping_express(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Shopping:Express; 购物消费-快递',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_medical_drug(self, r):
+        return r.partner in MedicalDrug
+
+    def parse_medical_drug(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Medical:Drug; 居家生活-药',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_shopping_electronic(self, r):
+        return r.partner in ShoppingElectronicPartner
+
+    def parse_shopping_electronic(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Shopping:Electronic; 购物消费-电子数码',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_water_elect_gas(self, r):
+        return r.product_name.startswith('电费') or r.product_name.startswith('水费')
+
+    def parse_water_elect_gas(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Home:WaterElectGas; 居家生活-水电煤气',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_traffic_train(self, r):
+        return r.product_name == '火车票'
+
+    def parse_traffic_train(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Traffic:Train; 行车交通-火车',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_traffic_plane(self, r):
+        return r.product_name.startswith('机票订单付款')
+
+    def parse_traffic_plane(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Traffic:Airplane; 行车交通-飞机',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_shopping_freight_insurance(self, r):
+        return r.product_name.startswith('保险-买家版运费险')
+
+    def parse_shopping_freight_insurance(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Shopping:FreightInsurance; 购物消费-运费险',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_home_phone_fee(self, r):
+        return r.product_name == '手机充值'
+
+    def parse_home_phone_fee(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Home:PhoneFee; 居家生活-话费',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_food_snack(self, r):
+        for p in FoodSnackPartner:
+            if p in r.partner:
+                return True
+        return False
+
+    def parse_food_snack(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Food:Snack; 饮食-零食',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_traffic_coach(self, r):
+        for p in TrafficCoachPartner:
+            if p in r.partner:
+                return True
+        return False
+
+    def parse_traffic_coach(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Traffic:Coach; 行车交通-大巴(黑车)',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_home_net_fee(self, r):
+        if r.partner in HomeNetFeePartner:
+            return True
+        return False
+
+    def parse_home_net_fee(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Home:NetFee; 居家生活-网费',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_food_fruit(self, r):
+        if r.partner in FoodFruitPartner:
+            return True
+        return False
+
+    def parse_food_fruit(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Home:FamilyShared; 家庭公用',
+            in_account='Expenses:Food:Fruit; 饮食-水果',
+        )
+        return ParseRetCode.SUCCESS, result

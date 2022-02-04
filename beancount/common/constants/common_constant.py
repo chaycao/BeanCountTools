@@ -37,6 +37,24 @@ SkipPartner = [
     '草捏子(曹宇)',
     '草捏子',
     '梅(黄梅)',
+    '蚂蚁财富-蚂蚁（杭州）基金销售有限公司',  # 基金操作不计入
+    '花呗',
+]
+
+# 可跳过的订单状态
+SkipStatus = [
+    '已全额退款',
+    '还款成功',
+    '交易关闭',
+    '退款成功',
+]
+
+# 可跳过的产品
+SkipProductName = [
+    '余额宝-单次转入',
+    '余额宝-转出到银行卡',
+    '提现-快速提现',
+    '余额宝-自动转入',
 ]
 
 # 早中晚餐 Partner
@@ -50,6 +68,22 @@ FoodMealPartner = [
     '桐坑牛肉粿条汤',
     '三津汤包深圳深大店',
     '深圳市八合里海记餐饮文化有限公司',
+    '探鱼',
+]
+
+# 零食 Partner
+FoodSnackPartner = [
+    '面包新语',
+    '奈雪的茶',
+    '贡茶',
+    '煌上煌',
+    '志远光大',
+    '食尚麦点',
+    '茶百道',
+    '泉记牛杂',
+    '拍立拿售货机',
+    '丰e足食',
+    '砵仔糕',
 ]
 
 # 买菜 Partner
@@ -59,13 +93,13 @@ FoodGroceryPartner = [
     '农家豆腐',
     '小李蔬菜',
     '朴朴超市',
-]
-
-# 零食 Partner
-FoodSnackPartner = [
-    '面包新语',
-    '贡茶（宝立方店）',
-
+    '元记水产',
+    '每一鲜蔬菜铺',
+    '客家纯手工',
+    '鱼虾蟹店',
+    '蔬菜百货店',
+    '新发粮油百货',
+    '福州朴朴电子商务有限公司',
 ]
 
 # 慈善捐助 Partner
@@ -74,8 +108,9 @@ RelationshipDonatePartner = [
 ]
 
 # 打车 Partner
-TaxiPartner = [
+TrafficTaxiPartner = [
     '曹操出行',
+    '滴滴出行',
 ]
 
 # 快递 Partner
@@ -84,6 +119,34 @@ ShoppingExpressPartner = [
 ]
 
 # 公交 Partner
-BusPartner = [
+TrafficBusPartner = [
     '深圳通',
+]
+
+# 药 Partner
+MedicalDrug = [
+    '叮当快药',
+]
+
+# 电子数码 Partner
+ShoppingElectronicPartner = [
+    'App Store & Apple Music',
+    '上海市梦迪集团贸易',
+]
+
+# 大巴（黑车） Partner
+TrafficCoachPartner = [
+    '贵州陆空联运汽车运输有限公司',
+    '织金汽车客运总站',
+]
+
+# 网费
+HomeNetFeePartner = [
+    '中国电信广东分公司充值'
+]
+
+# 水果
+FoodFruitPartner = [
+    '随缘（鲜果🍒）',
+    '上果家精品水果店'
 ]
