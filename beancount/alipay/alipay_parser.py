@@ -1,6 +1,4 @@
-from beancount.alipay.constants import SkipPartner
-from beancount.common.constants.account_constant import SKIP_ACCOUNT
-from beancount.common.constants.common_constant import FinalRetCode, ParseRetCode, PN
+from beancount.common.constants.common_constant import ParseRetCode, SkipPartner
 from beancount.common.parser import Parser
 
 
@@ -69,6 +67,9 @@ class AliPayParser(Parser):
         elif self.is_plane(record):
             # 飞机票
             retcode, result = self.parse_plane(record)
+        elif self.is_vpn(record):
+            # VPN
+            retcode, result = self.parse_vpn(record)
 
         # 解析失败转成未标记分类的excel格式
         if retcode == ParseRetCode.SKIP:
@@ -76,7 +77,6 @@ class AliPayParser(Parser):
         elif retcode == ParseRetCode.FAIL:
             result = self.parse_to_fail_excel_record(record)
         return retcode, result
-
 
     def is_skip_transfer(self, record):
         return record.partner in SkipPartner
@@ -198,5 +198,16 @@ class AliPayParser(Parser):
             r,
             out_account='Assets:Home:FamilyShared; 家庭公用',
             in_account='Expenses:Traffic:Airplane; 行车交通-飞机',
+        )
+        return ParseRetCode.SUCCESS, result
+
+    def is_vpn(self, r):
+        return r.partner == '上海市梦迪集团贸易'
+
+    def parse_vpn(self, r):
+        result = self.parse_to_excel_record_with_classify(
+            r,
+            out_account='Assets:Pocket:Husband; 老公钱包',
+            in_account='Expenses:Shopping:Electronic; 购物消费-电子数码',
         )
         return ParseRetCode.SUCCESS, result

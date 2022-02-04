@@ -77,10 +77,10 @@ class Parser(object):
             out_account = out_account.split(';')[0]
             in_account = in_account.split(';')[0]
 
-            date = row[3].value
-            fee = row[4].value
-            partner = row[8].value
-            remark = row[10].value
+            date = row[2].value
+            fee = row[3].value
+            partner = row[7].value
+            remark = row[9].value or ''
 
             out_t = BeanRecordTransaction(
                 out_account,

@@ -7,11 +7,13 @@ ACCOUNT_EXPENSES = [
     'Expenses:Baby:MotherSupplies; 宝宝费用-妈妈用品',
     'Expenses:Baby:Other; 宝宝费用-宝宝其他',
     'Expenses:Baby:Toy; 宝宝费用-宝宝玩具',
+    'Expenses:Baby:Play; 宝宝费用-游乐',
 
     'Expenses:Education:SchoolFee; 教育-学费',
 
     'Expenses:Entertainment:KTV; 休闲娱乐-K歌',
     'Expenses:Entertainment:Game; 休闲娱乐-游戏',
+    'Expenses:Entertainment:Movie; 休闲娱乐-电影',
     'Expenses:Entertainment:Other; 休闲娱乐-其他',
 
     'Expenses:Financial:Insurance; 金融保险-人身保险',
@@ -29,6 +31,7 @@ ACCOUNT_EXPENSES = [
     'Expenses:Food:Snack; 饮食-零食',
     'Expenses:Food:Wine; 饮食-烟酒茶',
     'Expenses:Food:Meal; 饮食-吃饭(早中晚餐)',
+    'Expenses:Food:Grocery; 饮食-买菜',
 
     'Expenses:Medical:Drug; 居家生活-药',
     'Expenses:Medical:Hospital; 居家生活-医疗',
@@ -73,6 +76,7 @@ ACCOUNT_EXPENSES = [
     'Expenses:Travel:Food; 出差旅游-餐饮费',
     'Expenses:Travel:Hotel; 出差旅游-住宿费',
     'Expenses:Travel:Transport; 出差旅游-交通费',
+    'Expenses:Travel:Shopping; 出差旅游-购物费',
 ]
 
 ACCOUNT_INCOME = [
