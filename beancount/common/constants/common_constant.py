@@ -32,6 +32,7 @@ FinalRetCode = [
 SkipPartner = [
     '发给黄梅🥰',
     '黄梅🥰',
+    '黄梅'
     '宇',
     '梅',
     '草捏子(曹宇)',
@@ -56,6 +57,12 @@ SkipProductName = [
     '余额宝-转出到银行卡',
     '提现-快速提现',
     '余额宝-自动转入',
+    '余额宝-转出到余额',
+]
+
+# 可跳过的类别
+SkipType = [
+    '零钱提现'
 ]
 
 # 早中晚餐 Partner
@@ -107,6 +114,9 @@ FoodGroceryPartner = [
     '蔬菜百货店',
     '新发粮油百货',
     '福州朴朴电子商务有限公司',
+    '业林',
+    '猪肉档',
+    '陈新英',
 ]
 
 # 慈善捐助 Partner
@@ -123,6 +133,7 @@ TrafficTaxiPartner = [
 # 快递 Partner
 ShoppingExpressPartner = [
     '中通快递',
+    '顺丰速运',
 ]
 
 # 公交 Partner

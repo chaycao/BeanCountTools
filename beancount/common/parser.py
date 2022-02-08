@@ -3,7 +3,7 @@ from beancount.common.constants.account_constant import SKIP_ACCOUNT
 from beancount.common.constants.common_constant import PN, FoodMealPartner, ParseRetCode, FoodGroceryPartner, \
     TrafficBusPartner, TrafficTaxiPartner, ShoppingExpressPartner, MedicalDrug, SkipStatus, SkipPartner, \
     SkipProductName, ShoppingElectronicPartner, FoodSnackPartner, TrafficCoachPartner, FoodFruitPartner, \
-    RelationshipDonatePartner
+    RelationshipDonatePartner, SkipType
 
 
 class Parser(object):
@@ -21,6 +21,8 @@ class Parser(object):
         elif self.is_skip_status(record):
             retcode = ParseRetCode.SKIP
         elif self.is_skip_product_name(record):
+            retcode = ParseRetCode.SKIP
+        elif self.is_skip_type(record):
             retcode = ParseRetCode.SKIP
         # 早中晚餐
         elif self.is_food_meal(record):
@@ -185,6 +187,9 @@ class Parser(object):
 
     def is_skip_product_name(self, r):
         return r.product_name in SkipProductName
+
+    def is_skip_type(self, r):
+        return r.type in SkipType
 
     def is_food_meal(self, r):
         for p in FoodMealPartner:
