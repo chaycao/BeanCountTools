@@ -25,6 +25,8 @@ ACCOUNT_EXPENSES = [
     'Expenses:Home:Rent; 居家生活-房租',
     'Expenses:Home:Repair; 居家生活-维修',
     'Expenses:Home:WaterElectGas; 居家生活-水电煤气',
+    'Expenses:Home:House; 居家生活-买房',
+    'Expenses:Home:Furnish; 居家生活-装修',
 
     'Expenses:Food:Fruit; 饮食-水果',
     'Expenses:Food:Milk; 饮食-牛奶',
@@ -90,6 +92,7 @@ ACCOUNT_INCOME = [
     'Income:Job:Salary; 职业-工资',
     'Income:Other:Operate; 其他-经营',
     'Income:Other:Win; 其他-中奖',
+    'Income:Other:HousingFound CNY; 其他-住房公积金提取',
     'Income:Other:WindfallBenefit; 其他-意外来钱',
     'Income:Relationship:Birthday; 人情收礼-生日',
     'Income:Relationship:Gift; 人情收礼-红包',
